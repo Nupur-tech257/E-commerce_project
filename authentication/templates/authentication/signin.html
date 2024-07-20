@@ -1,0 +1,26 @@
+{%extends "authentication/base.html" %}
+{%block content%}
+
+    <h3>Sign In</h3>
+    <form action='/signin/' method='post'>
+    {% csrf_token %}
+        {{message}}
+        <!--<br>
+        <label for="">Username</label>
+        <input type="username" id="username" name="username"  placeholder="Email Address" Required>
+        <br>
+        <label for="">Password</label>
+        <input type="password" id="password1" name="password1" placeholder="create password" Required>
+        <br>-->
+        {%for i in form%}
+        <div class="form-control {%if form.i.errors%}errors{%endif%}">
+            {{i.label_tag}}
+            {{i}}
+            {{i.errors}}
+        </div>
+        {%endfor%}
+        <button type="submit"> Sign In</button>
+    </form>
+    <h4>Don't have an account?<a href="http://127.0.0.1:8000/signup/">Sign Up</a> </h4>
+
+{%endblock%}

@@ -1,0 +1,7 @@
+{%extends "authentication/base.html" %}
+{%block content%}
+{%if user.is_authenticated%}
+<h3>Welcome {{fname|title}}!</h3>
+{%endif%}
+<h4><a href="http://127.0.0.1:8000/signout/">Sign Out</a> </h4>
+{%endblock%}
