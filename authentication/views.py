@@ -37,6 +37,7 @@ def signup(request):
             myuser=User.objects.create_user(username,email,password1)
             myuser.first_name=fname
             myuser.last_name=lname
+            myuser.is_active=False
             myuser.save()
 
         #Welcome Email 
@@ -45,6 +46,9 @@ def signup(request):
             from_email=settings.EMAIL_HOST_USER
             to_list=[myuser.email]
             send_mail(subject,message,from_email,to_list,fail_silently=True)
+
+        #
+
             return redirect('signin')
     else:
         form=SignupForm()

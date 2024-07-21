@@ -1,0 +1,11 @@
+*{
+    color: whitesmoke;}
+#nav{height:400px;
+    background-color: rgb(68, 2, 84,0.2);}
+nav{background-color: rgb(153, 50, 204);
+    height:60px;}
+a{margin-right:180px;
+  background-color: darkorchid;
+  margin-top:100px;}
+button{background-color: darkmagenta;}
+input{background-color: whitesmoke;}

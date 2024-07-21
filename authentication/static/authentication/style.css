@@ -1,0 +1,58 @@
+body{
+    font-family: Verdana,Tahoma, sans-serif;
+    margin:0
+}
+
+form{
+    margin: 6rem 9rem 3rem 25rem;
+    width:30%;
+    max-width: 40rem;
+    padding:2rem;
+    border-radius: 12px;
+    background-color: rgb(244, 241, 238);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+h4,h3{
+    color:blue;
+    text-align: center;
+}
+
+button{
+    cursor:pointer;
+    padding: 0.5rem 1.5em;
+    border-radius: 12px;
+    background-color: rgb(155, 9, 184);
+    color: azure;
+    border: 1px solid #1f0050;
+}
+
+button:hover,
+button:active{
+    background-color: rgb(51, 5, 94);
+    border-color: rgb(33, 2, 62);
+}
+
+.form-control{
+    margin-bottom: 1rem;
+}
+
+.form-control-input{
+    font:inherit;
+    padding: 0.25rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    display: block;
+    width: 20rem;
+}
+
+.form-control-input:focus{
+    border-color: #1f0050;
+    outline: none;
+    background-color: #f4eeff;
+}
+
+.form-control label{
+    font-weight: normal;
+    display: block;
+}

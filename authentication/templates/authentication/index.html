@@ -1,5 +1,17 @@
 {%extends "authentication/base.html" %}
+{%load static%}
+<link rel="stylesheet" href="{%static 'authentication/index.css' %}">
 {%block content%}
+<div id="nav">
+    <nav>
+        <a id="1">amazon.in</a>
+        <a id="2">account</a>
+        <a id="3">my cart</a>
+        <a id="4">contact us</a>
+        <input placeholder="search amazon.in">
+        <button>search</button>
+    </nav>
+</div>
 {%if user.is_authenticated%}
 <h3>Welcome {{fname|title}}!</h3>
 {%endif%}
