@@ -4,5 +4,6 @@ from authentication.views import *
 
 urlpatterns = [
     path('',index,name="index"),
-    path('brush/',brush,name="brush"),
-    path('cart/',cart,name="cart"),]
+    path('store/',store,name="store"),
+    path('cart/',cart,name="cart"),
+    path('checkout/',checkout,name="checkout"),]

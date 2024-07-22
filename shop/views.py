@@ -3,8 +3,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def brush(request):
-    return render(request,"shop/brush.html")
+def store(request):
+    return render(request,"shop/store.html")
 
 def cart(request):
     return render(request,"shop/cart.html")
+
+def checkout(request):
+    return render(request,"shop/checkout.html")
