@@ -8,13 +8,6 @@
     {% csrf_token %}
         <h3>Sign In</h3>
         {{message}}
-        <!--<br>
-        <label for="">Username</label>
-        <input type="username" id="username" name="username"  placeholder="Email Address" Required>
-        <br>
-        <label for="">Password</label>
-        <input type="password" id="password1" name="password1" placeholder="create password" Required>
-        <br>-->
         {%for i in form%}
         <div class="form-control {%if form.i.errors%}errors{%endif%}">
             {{i.label_tag}}

@@ -28,10 +28,10 @@
                 Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Signup</a>
-                <a class="dropdown-item" href="#">Singin</a>
+                <a class="dropdown-item" href="{%url 'signup'%}">Signup</a>
+                <a class="dropdown-item" href="{%url 'signin'%}">Singin</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">SignOut</a>
+                <a class="dropdown-item" href="{%url 'signout'%}">SignOut</a>
               </div>
             </li>
           </ul>
@@ -50,7 +50,6 @@
        <div class="container">
               <br>
             {% block content %}
-
 
             {% endblock content %}
          </div>

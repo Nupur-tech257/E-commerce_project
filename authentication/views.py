@@ -11,8 +11,6 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes,force_str
 
 # Create your views here.
-def index(request):
-    return render(request,"authentication/index.html")
 
 def signup(request):
     '''this function is for users to signup on our website.
@@ -85,8 +83,7 @@ def signin(request):
         if user is not None:
             login(request,user)
             fname=user.first_name
-            print(fname)
-            return render(request,"authentication/index.html",context={"fname":fname})
+            return render(request,"shop/store.html",context={"fname":fname})
         else:
             message="You've entered wrong username or password"
             return render(request,'authentication/signin.html',{"message":message,"form":form})
@@ -98,8 +95,8 @@ def signout(request):
     '''this function is for user to signout'''
     logout(request)
     message="you've logged out successfully!"
-    return render(request,'authentication/signout.html',{"message":message})
-
+    return render(request,'shop/store.html',{"message":message})
+   
 
 def activate(request,uidb64,token):
     '''after a confirmation link is sent to user this functions activates his account'''

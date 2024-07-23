@@ -1,9 +1,10 @@
 from django.urls import path,include
 from .views import *
 from authentication.views import *
+from authentication.urls import *
 
 urlpatterns = [
-    path('',index,name="index"),
+    path('',main,name="main"),
     path('store/',store,name="store"),
     path('cart/',cart,name="cart"),
     path('checkout/',checkout,name="checkout"),]
