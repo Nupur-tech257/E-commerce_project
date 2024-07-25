@@ -97,3 +97,15 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
+
+.greeting{
+	color:white;
+	background-image:url("../images/main.jpg");
+	background-size: contain;
+	height:500px;
+	width:1200px;
+	margin:0 20px 10px 0px;
+	text-align: left;
+	text-shadow: 2px 2px rgb(179, 168, 176);
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from .models import *
 import json
+import datetime
 
 # Create your views here.
 def main(request):
@@ -12,6 +13,7 @@ def store(request):
     if request.user.is_authenticated:
         customer=request.user
         order,created=Order.objects.get_or_create(customer=customer,complete=False)
+        print('s')
         items=order.orderitem_set.all()
         order_items=order.get_cart_item
         fname=request.user.first_name
@@ -70,4 +72,33 @@ def updateitem(request):
     orderitem.save()
     if orderitem.quantity<=0:
         orderitem.delete()
+    print(orderitem.quantity)
     return JsonResponse('item',safe=False)
+
+def processOrder(request):
+    data=json.loads(request.body)
+    transaction_id=datetime.datetime.now().timestamp()
+    if request.user.is_authenticated:
+        customer=request.user
+        order,created=Order.objects.get_or_create(customer=customer,complete=False)
+        order_total=order.get_cart_total
+        print(order_total)
+        order.transaction_id=transaction_id
+        order.complete=True
+        print(order_total)
+        print(order.transaction_id)
+        order.save()
+        ShippingAddresss.objects.create(
+            customer=customer,
+            order=order,
+            address=data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zipcode=data['shipping']['zipcode'],
+            #date_added=datetime.datetime.now()
+            )
+        print(order_total)
+    else:
+        print("user is not logged in")
+
+    return JsonResponse('Payment complete',safe=False)
