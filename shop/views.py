@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from .models import *
 import json
 import datetime
+from .utils import *
+from authentication.forms import *
 
 # Create your views here.
 def main(request):
@@ -10,35 +12,22 @@ def main(request):
 
 def store(request):
     product=Product.objects.all()
-    if request.user.is_authenticated:
+    '''if request.user.is_authenticated:
         customer=request.user
         order,created=Order.objects.get_or_create(customer=customer,complete=False)
-        print('s')
         items=order.orderitem_set.all()
         order_items=order.get_cart_item
         fname=request.user.first_name
-        context={"product":product,"fname":fname,"order_items":order_items}
-        return render(request,"shop/store.html",context)
     else:
-        items=[]
-        order_items=0
-        context={"product":product,"order_items":order_items}
-        return render(request,"shop/store.html",context)
+        _,order_items,_= cookiecart(request)
+        fname=""'''
+    _,order_items,_,fname= data(request)
+    context={"product":product,"fname":fname,"order_items":order_items}
+    return render(request,"shop/store.html",context)
 
 def cart(request):
-    if request.user.is_authenticated:
-        customer=request.user
-        order,created=Order.objects.get_or_create(customer=customer,complete=False)
-        items=order.orderitem_set.all()
-        order_items=order.get_cart_item
-        order_total=order.get_cart_total
-    else:
-        items=[]
-        order_items=0
-        order_total=0
-
+    items,order_items,order_total,_= data(request)
     context={'items':items,"order_items":order_items,"order_total":order_total}
-    print(context)
     return render(request,"shop/cart.html",context)
 
 def checkout(request):
@@ -48,13 +37,11 @@ def checkout(request):
         items=order.orderitem_set.all()
         order_items=order.get_cart_item
         order_total=order.get_cart_total
+        context={'items':items,"order_items":order_items,"order_total":order_total}
+        return render(request,"shop/checkout.html",context)
     else:
-        items=[]
-        order_items=0
-        order_total=0
-
-    context={'items':items,"order_items":order_items,"order_total":order_total}
-    return render(request,"shop/checkout.html",context)
+        form=SignupForm()
+        return render(request,"authentication/signup.html",{"form":form})
 
 def updateitem(request):
     data=json.loads(request.body)
@@ -72,7 +59,6 @@ def updateitem(request):
     orderitem.save()
     if orderitem.quantity<=0:
         orderitem.delete()
-    print(orderitem.quantity)
     return JsonResponse('item',safe=False)
 
 def processOrder(request):
@@ -82,12 +68,10 @@ def processOrder(request):
         customer=request.user
         order,created=Order.objects.get_or_create(customer=customer,complete=False)
         order_total=order.get_cart_total
-        print(order_total)
         order.transaction_id=transaction_id
         order.complete=True
-        print(order_total)
-        print(order.transaction_id)
         order.save()
+        
         ShippingAddresss.objects.create(
             customer=customer,
             order=order,
@@ -97,7 +81,6 @@ def processOrder(request):
             zipcode=data['shipping']['zipcode'],
             #date_added=datetime.datetime.now()
             )
-        print(order_total)
     else:
         print("user is not logged in")
 
