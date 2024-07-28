@@ -1,0 +1,32 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+{%for i in product%}
+<div class="row">
+	<div class="col-lg-6">
+		<div class="box-element" id="form-wrapper">
+            <hr>
+            <div><img class="thumbnail" src="{{i.imageURL}}"></div>
+            <hr>
+            <h4>Rs{{i.price}}</h4>
+		</div>
+		
+	</div>
+
+	<div class="col-lg-6">
+		<div class="box-element">
+            <div class="box-element">
+                <a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Back to Store</a>
+                <hr>
+                <h3>{{i.name}}</h3>
+                <hr>
+                <h5>Product details</h5>
+                <hr>
+                {{i.product_details}}
+            </div>
+
+		</div>
+	</div>
+</div>
+{%endfor%}
+{%endblock%}

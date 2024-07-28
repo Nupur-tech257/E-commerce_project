@@ -1,11 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Category(models.Model):
+    name=models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
 class Product(models.Model):
     name=models.CharField(max_length=200)
     price=models.FloatField(default=0)
+    product_details=models.TextField(blank=True)
     image=models.ImageField(null=True,blank=True)
+    category=models.ForeignKey(Category,on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
         return f'{self.name}'

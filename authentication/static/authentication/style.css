@@ -14,7 +14,7 @@ form{
 }
 
 h4,h3{
-    color:blue;
+    color:black;
     text-align: center;
 }
 
@@ -22,15 +22,15 @@ button{
     cursor:pointer;
     padding: 0.5rem 1.5em;
     border-radius: 12px;
-    background-color: rgb(155, 9, 184);
+    background-color: #4f868c;
     color: azure;
-    border: 1px solid #1f0050;
+    border: 1px solid green;
 }
 
 button:hover,
 button:active{
-    background-color: rgb(51, 5, 94);
-    border-color: rgb(33, 2, 62);
+    background-color: green;
+    border-color: green;
 }
 
 .form-control{

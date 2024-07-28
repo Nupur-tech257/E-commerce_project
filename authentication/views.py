@@ -9,6 +9,7 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from .tokens import *
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes,force_str
+import random
 
 # Create your views here.
 
@@ -112,3 +113,14 @@ def activate(request,uidb64,token):
         return redirect("home")
     else:
         return render(request,"activation_failed.html")
+
+def otp(request):
+    '''subject="Confirmation mail"
+    c=str(random.randint(1000,9999))
+    message="Your otp is "
+    from_email=settings.EMAIL_HOST_USER
+    to_list=[myuser.email]
+    send_mail(subject,message,from_email,to_list,fail_silently=True)'''
+
+def changepassword(request):
+    pass
