@@ -52,6 +52,8 @@ def updateitem(request):
         orderitem.quantity=(orderitem.quantity+1)
     elif action=='remove':
         orderitem.quantity=(orderitem.quantity-1)
+    elif action=='delete':
+        orderitem.quantity=0
     orderitem.save()
     if orderitem.quantity<=0:
         orderitem.delete()
@@ -104,4 +106,10 @@ def category(request,name):
 def views(request,id):
     if request.method=='GET':
         product=Product.objects.filter(id=id)
-    return render(request,'shop/view.html',{'product':product})
+        _,order_items,_,fname= data(request)
+        category=Category.objects.all()
+    context={"product":product,"fname":fname,"order_items":order_items,'category':category}
+    return render(request,"shop/view.html",context)
+
+
+

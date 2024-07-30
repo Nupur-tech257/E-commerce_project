@@ -1,3 +1,4 @@
 django
 six
 Pillow
+django-phonenumber-field[phonenumbers]

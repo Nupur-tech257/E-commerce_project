@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
     'shop',
     'authentication',
 ]
@@ -135,3 +136,5 @@ EMAIL_HOST=EMAIL_HOST
 EMAIL_HOST_USER=EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
 EMAIL_PORT=EMAIL_PORT
+
+AUTH_KEY='427321AdlqGzr3GHp66a8c69fP1'

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Category(models.Model):
@@ -7,13 +8,27 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name}'
+    
+class Vendor(models.Model):
+    name=models.CharField(max_length=50)
+    phone_number=models.IntegerField(unique=True)
+    email=models.EmailField(unique=True)
+
+    def __str__(self):
+        return str(self.name)
+    
+class Profile(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    phonenumber=PhoneNumberField(blank=True)
+    
 
 class Product(models.Model):
+    #vendor=models.ForeignKey(Vendor,on_delete=models.CASCADE,null=True)
     name=models.CharField(max_length=200)
     price=models.FloatField(default=0)
     product_details=models.TextField(blank=True)
     image=models.ImageField(null=True,blank=True)
-    category=models.ForeignKey(Category,on_delete=models.SET_NULL,blank=True,null=True)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -27,7 +42,7 @@ class Product(models.Model):
         return url
 
 class Order(models.Model):
-    customer=models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
+    customer=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     date_ordered=models.DateField(auto_now_add=True)
     complete=models.BooleanField(default=False,null=True,blank=False)
     transaction_id=models.CharField(max_length=200,null=True)
@@ -51,8 +66,8 @@ class Order(models.Model):
         return f'{self.id}.{self.customer}'
     
 class OrderItem(models.Model):
-    product=models.ForeignKey(Product,on_delete=models.SET_NULL,blank=True,null=True)
-    order=models.ForeignKey(Order,on_delete=models.SET_NULL,blank=True,null=True)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True,null=True)
+    order=models.ForeignKey(Order,on_delete=models.CASCADE,blank=True,null=True)
     quantity=models.IntegerField(default=0,null=True,blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
 
@@ -65,8 +80,8 @@ class OrderItem(models.Model):
         return f'{self.id}.{self.order}'
 
 class ShippingAddresss(models.Model):
-    customer=models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
-    order=models.ForeignKey(Order,on_delete=models.SET_NULL,blank=True,null=True)
+    customer=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
+    order=models.ForeignKey(Order,on_delete=models.CASCADE,blank=True,null=True)
     address=models.CharField(max_length=200,null=True)
     city=models.CharField(max_length=200,null=True)
     state=models.CharField(max_length=200,null=True)

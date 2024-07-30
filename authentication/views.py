@@ -9,7 +9,12 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from .tokens import *
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes,force_str
-import random
+from django.contrib import messages
+from django.contrib.auth.hashers import check_password
+import random,time
+import http.client
+from myshop.settings import AUTH_KEY
+from shop.models import *
 
 # Create your views here.
 
@@ -23,6 +28,7 @@ def signup(request):
             fname=form.cleaned_data['first_name']
             lname=form.cleaned_data['last_name']
             email=form.cleaned_data['email']
+            phonenumber=form.cleaned_data['phonenumber']
             password1=form.cleaned_data['password'] 
             password2=form.cleaned_data['confirm_password']
             full_name = "%s %s" % (fname, lname)
@@ -41,6 +47,8 @@ def signup(request):
             myuser.first_name=fname
             myuser.last_name=lname
             myuser.save()
+            profile=Profile(user=myuser,phonenumber=phonenumber)
+            profile.save()
 
         #Welcome Email 
             '''subject="Welcome!"
@@ -113,14 +121,60 @@ def activate(request,uidb64,token):
         return redirect("home")
     else:
         return render(request,"activation_failed.html")
-
-def otp(request):
-    '''subject="Confirmation mail"
-    c=str(random.randint(1000,9999))
-    message="Your otp is "
-    from_email=settings.EMAIL_HOST_USER
-    to_list=[myuser.email]
-    send_mail(subject,message,from_email,to_list,fail_silently=True)'''
-
+    
 def changepassword(request):
-    pass
+    user=request.user
+    if request.method=='POST':
+        form=ChangePassword(request.POST)
+        if form.is_valid():
+            old_password=form.cleaned_data['old_password']
+            new_password=form.cleaned_data['new_password']
+            confirm_password=form.cleaned_data['confirm_password']
+
+        if new_password!=confirm_password:
+            message="passwords don't match"
+            return render(request,'authentication/changepassword.html',{"message":message,"form":form})
+        
+        if check_password(old_password,user.password):
+            user.set_password=new_password
+            user.save()
+            message='Password changed'
+            return render(request,'authentication/signup.html',{'message':message})
+        else:
+            message="Old password is Incorrect"
+            return render(request,'authentication/changepassword.html',{"message":message,"form":form})
+    else:
+        form=ChangePassword()
+    return render(request,'authentication/changepassword.html',{"form":form})
+
+def send_otp(mobile,otp):
+    conn = http.client.HTTPSConnection("control.msg91.com")
+    headers = { 'Content-Type': "application/JSON" }
+    conn.request("POST", f"/api/v5/otp?otp="+otp+"&otp_length=4&otp_expiry=1&template_id=ABC&mobile="+mobile+"&authkey=427321AdlqGzr3GHp66a8c69fP1", headers)
+    res = conn.getresponse()
+    data = res.read()
+    return None
+
+def Forgotpassword(request):
+    if request.method=='POST':
+        form=ForgotPasswordform(request.POST)
+        if form.is_valid():
+            number=form.cleaned_data['phonenumber']
+            user=Profile.objects.get(phonenumber=number)
+            print(user.phonenumber)
+        if user is not None:
+            otp1=str(random.randint(1000,9999))
+            send_otp(number,otp1)
+            request.session['number']=number
+            return redirect('otp')
+        else:
+            message='This email is not registered with us'
+            return render(request,'authentication/forgotpassword.html',{'form':form,'message':message})
+    else:
+        form=ForgotPasswordform()
+        return render(request,'authentication/forgotpassword.html',{'form':form})
+        
+def otp(request):
+    form=OTP(request.POST)
+    print(Forgotpassword.otp1)
+    return render(request,'authentication/otp.html',{'form':form})
