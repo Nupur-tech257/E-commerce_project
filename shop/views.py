@@ -103,7 +103,7 @@ def category(request,name):
     context={"product":product,"fname":fname,"order_items":order_items,'category':category}
     return render(request,"shop/store.html",context)
 
-def views(request,id):
+def view(request,id):
     if request.method=='GET':
         product=Product.objects.filter(id=id)
         _,order_items,_,fname= data(request)

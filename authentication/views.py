@@ -136,10 +136,11 @@ def changepassword(request):
             return render(request,'authentication/changepassword.html',{"message":message,"form":form})
         
         if check_password(old_password,user.password):
-            user.set_password=new_password
+            user.set_password(new_password)
             user.save()
             message='Password changed'
-            return render(request,'authentication/signup.html',{'message':message})
+            form=SigninForm()
+            return render(request,'authentication/signin.html',{'form':form,'message':message})
         else:
             message="Old password is Incorrect"
             return render(request,'authentication/changepassword.html',{"message":message,"form":form})
@@ -147,34 +148,46 @@ def changepassword(request):
         form=ChangePassword()
     return render(request,'authentication/changepassword.html',{"form":form})
 
-def send_otp(mobile,otp):
-    conn = http.client.HTTPSConnection("control.msg91.com")
-    headers = { 'Content-Type': "application/JSON" }
-    conn.request("POST", f"/api/v5/otp?otp="+otp+"&otp_length=4&otp_expiry=1&template_id=ABC&mobile="+mobile+"&authkey=427321AdlqGzr3GHp66a8c69fP1", headers)
-    res = conn.getresponse()
-    data = res.read()
-    return None
-
-def Forgotpassword(request):
+def myprofile_edit(request):
+    user=request.user
+    profile=Profile.objects.get(user=user)
     if request.method=='POST':
-        form=ForgotPasswordform(request.POST)
+        form=Myprofile(request.POST)
         if form.is_valid():
-            number=form.cleaned_data['phonenumber']
-            user=Profile.objects.get(phonenumber=number)
-            print(user.phonenumber)
-        if user is not None:
-            otp1=str(random.randint(1000,9999))
-            send_otp(number,otp1)
-            request.session['number']=number
-            return redirect('otp')
-        else:
-            message='This email is not registered with us'
-            return render(request,'authentication/forgotpassword.html',{'form':form,'message':message})
+            f_name=form.cleaned_data['first_name']
+            l_name=form.cleaned_data['last_name']
+            username=form.cleaned_data['username']
+            email=form.cleaned_data['email']
+            phn=form.cleaned_data['phonenumber']
+        if f_name=="":
+            f_name=user.first_name
+        if l_name=="":
+            l_name=user.last_name
+        if username=="":
+            username=user.username
+        if email=="":
+            email=user.email
+        if phn=="":
+            phn=profile.phonenumber
+           
+        User.objects.filter(id=user.id).update(first_name=f_name,last_name=l_name,username=username,email=email)
+        Profile.objects.filter(user=user).update(phonenumber=phn)
+        return redirect('myprofile')
     else:
-        form=ForgotPasswordform()
-        return render(request,'authentication/forgotpassword.html',{'form':form})
-        
-def otp(request):
-    form=OTP(request.POST)
-    print(Forgotpassword.otp1)
-    return render(request,'authentication/otp.html',{'form':form})
+        form=Myprofile()
+
+    context={'form': form}
+    return render(request,'authentication/myprofile_edit.html',context)
+
+def myprofile(request):
+    user=request.user
+    profile=Profile.objects.get(user=user)
+    if request.method=='GET':
+        f_name=user.first_name
+        l_name=user.last_name
+        username=user.username
+        email=user.email
+        phonenumber=profile.phonenumber
+        print(phonenumber)
+        context={'f_name':f_name,'l_name':l_name,'username':username,'email':email,'phn':phonenumber}
+    return render(request,'authentication/myprofile.html',context)

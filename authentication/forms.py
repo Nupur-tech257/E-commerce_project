@@ -32,3 +32,16 @@ class OTP(forms.Form):
 
 class ForgotPasswordform(forms.Form):
     phonenumber=PhoneNumberField(widget=forms.TextInput(attrs={'placeholder':('Phone')}),label="Phone number", required=False)
+
+class Myprofile(forms.Form):
+    first_name=forms.CharField(label="First Name",max_length=50,
+                               error_messages={"required":"This can't be empty!",
+                                               "max_length":"Enter a shorter name"},required=False)
+    last_name=forms.CharField(label="Last Name",max_length=50,
+                               error_messages={"required":"This can't be empty!",
+                                               "max_length":"Enter a shorter name"},required=False)
+    email=forms.EmailField(label="Email Address",error_messages={"required":"This can't be empty!"},required=False)
+    username=forms.CharField(label="Username",max_length=50,
+                               error_messages={"required":"This can't be empty!",
+                                               "max_length":"Enter a shorter name"},required=False)
+    phonenumber = PhoneNumberField(widget=forms.TextInput(attrs={'placeholder':('Phone')}),label="Phone number", required=False)

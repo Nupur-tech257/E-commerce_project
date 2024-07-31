@@ -1,0 +1,20 @@
+{%extends "authentication/base.html" %}
+{%load static%}
+{%block style %}
+<link rel="stylesheet" href="{%static 'authentication/style.css' %}">
+{%endblock%}
+{%block content%}
+    <form action="/edit/" method='get'>
+            <h3>My Profile</h3>
+            {{message}}
+            <div class="form-control {%if form.i.errors%}errors{%endif%}">
+                <p>First name:{{f_name}}</p>
+                <p>Last name:{{l_name}}</p>
+                <p>Username:{{username}}</p>
+                <p>Email:{{email}}</p>
+                <p>Phonenumber:{{phn}}</p>
+            </div>
+            <button type="submit">Edit</button>
+        </form>
+    
+{%endblock%}

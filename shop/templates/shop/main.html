@@ -71,6 +71,7 @@
                 <div class="dropdown-divider"></div>
                 <a id="signout" class="dropdown-item" href="{%url 'signout'%}">SignOut</a>
                 <a id="changepassword" class="dropdown-item" href="{%url 'changepassword'%}">Change password</a>
+                <a id="myprofile" class="dropdown-item" href="{%url 'myprofile'%}">MyProfile</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -118,6 +119,7 @@
     if(user=="AnonymousUser"){
       document.getElementById('signout').classList.add("hidden")
       document.getElementById('changepassword').classList.add("hidden")
+      document.getElementById('myprofile').classList.add("hidden")
       }
   </script>
 </body>
