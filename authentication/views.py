@@ -92,7 +92,7 @@ def signin(request):
         if user is not None:
             login(request,user)
             fname=user.first_name
-            return render(request,"shop/store.html",context={"fname":fname})
+            return redirect("store")
         else:
             message="You've entered wrong username or password"
             return render(request,'authentication/signin.html',{"message":message,"form":form})
@@ -103,8 +103,7 @@ def signin(request):
 def signout(request):
     '''this function is for user to signout'''
     logout(request)
-    message="you've logged out successfully!"
-    return render(request,'shop/store.html',{"message":message})
+    return redirect('signin')
    
 
 def activate(request,uidb64,token):

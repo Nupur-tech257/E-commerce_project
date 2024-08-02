@@ -10,8 +10,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>form</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {%block style%}{%endblock%}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        {%block style%}
+        <link rel="stylesheet" href="{%static 'css/style.css' %}"> 
+        {%endblock%}
     </head>
     <body>
        {%block content%}

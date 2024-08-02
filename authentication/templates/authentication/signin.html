@@ -1,7 +1,7 @@
 {%extends "authentication/base.html" %}
 {%load static%}
 {%block style %}
-<link rel="stylesheet" href="{%static 'authentication/style.css' %}">
+<link rel="stylesheet" href="{%static 'css/style.css' %}">
 {%endblock%}
 {%block content%}
     <form action='/signin/' method='post'>
@@ -15,9 +15,13 @@
             {{i.errors}}
         </div>
         {%endfor%}
+        <hr>
         <button type="submit"> Sign In</button>
-        <h4>Don't have an account?<a href="{%url 'signup'%}">Sign Up</a> </h4>
-        <h4><a href="{%url 'password_reset'%}">Forgot Password</a><h4>
+        <hr>
+        <div id='link1'><h5>Don't have an account?<a href="{%url 'signup'%}">Sign Up</a> </h4></div>
+        <div id='link2'><h5><a href="{%url 'password_reset'%}">Forgot Password</a><h4></div>
+        <hr>
+        <div id='link3'><h5 style='text-align:center'><a href="#">contact us</h5></div>
     </form>
 
 {%endblock%}

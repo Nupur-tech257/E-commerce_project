@@ -1,7 +1,7 @@
 {%extends "authentication/base.html" %}
 {%load static%}
 {%block style %}
-<link rel="stylesheet" href="{%static 'authentication/style.css' %}">
+<link rel="stylesheet" href="{%static 'css/style.css' %}">
 {%endblock%}
 {%block content%}
     {{msg}}
@@ -31,7 +31,11 @@
         </div>
         {%endfor%}
         <button type="submit"> Signup </button>
-        <h4>Already have an account? <a href="http://127.0.0.1:8000/signin/">Sign In</a> </h4>
+        <div id="link1"><h5>Already have an account? <a href="http://127.0.0.1:8000/signin/">Sign In</a> </h4></div>
+        <hr>
+        <div id="link"><h5> By continuing you,agree to <a href="#"> Conditions of use </a></h5></div>
     </form>
+    <hr>
+    <h5 style='text-align:center'><a href="#">contact us</h5>
 
 {%endblock%}

@@ -111,5 +111,13 @@ def view(request,id):
     context={"product":product,"fname":fname,"order_items":order_items,'category':category}
     return render(request,"shop/view.html",context)
 
-
+def myorders(request):
+    if request.method=='GET':
+        user=request.user
+        print(user)
+        order=Order.objects.filter(customer=user,complete=True)
+        print(order)
+        items=OrderItem.objects.filter(order__in=order)
+        context={'items':items}
+    return render(request,'shop/myorders.html',context)
 

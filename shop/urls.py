@@ -12,4 +12,5 @@ urlpatterns = [
     path('process_order/',processOrder,name='process_order'),
     path('search/',search,name='search'),
     path('category/<name>',category,name='category'),
-    path('views/<id>',view,name='views'),]
+    path('views/<id>',view,name='views'),
+    path('myorders/',myorders,name='myorders'),]

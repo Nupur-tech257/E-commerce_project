@@ -50,7 +50,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand" href="#">Ecommerce</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -72,6 +72,7 @@
                 <a id="signout" class="dropdown-item" href="{%url 'signout'%}">SignOut</a>
                 <a id="changepassword" class="dropdown-item" href="{%url 'changepassword'%}">Change password</a>
                 <a id="myprofile" class="dropdown-item" href="{%url 'myprofile'%}">MyProfile</a>
+                <a id='myorders' class="dropdown-item" href="{%url 'myorders'%}">MyOrders</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -104,7 +105,6 @@
             <div class="greeting">
               <h1 class="greeting">Welcome {{fname}}!</h1>
             </div>
-
             {% endblock content %}
          </div>
 
@@ -120,6 +120,7 @@
       document.getElementById('signout').classList.add("hidden")
       document.getElementById('changepassword').classList.add("hidden")
       document.getElementById('myprofile').classList.add("hidden")
+      document.getElementById('myorders').classList.add("hidden")
       }
   </script>
 </body>

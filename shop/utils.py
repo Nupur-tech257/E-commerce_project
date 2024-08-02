@@ -32,11 +32,14 @@ def data(request):
     if request.user.is_authenticated:
         customer=request.user
         order,created=Order.objects.get_or_create(customer=customer,complete=False)
-        items=order.orderitem_set.all()
+        items=OrderItem.objects.filter(order=order)
         order_items=order.get_cart_item
         order_total=order.get_cart_total
         fname=request.user.first_name
     else:
-        items,order_items,order_total= cookiecart(request)
-        fname=""
+        items=None
+        order_items=0
+        order_total=0
+        fname=''
+    
     return items,order_items,order_total,fname
