@@ -150,6 +150,15 @@ def changepassword(request):
 def myprofile_edit(request):
     user=request.user
     profile=Profile.objects.get(user=user)
+def send_otp(mobile,otp):
+    conn = http.client.HTTPSConnection("control.msg91.com")
+    headers = { 'Content-Type': "application/JSON" }
+    conn.request("POST", f"/api/v5/otp?otp="+otp+"&otp_length=4&otp_expiry=1&template_id=ABC&mobile="+mobile+"&authkey=427321AdlqGzr3GHp66a8c69fP1", headers)
+    res = conn.getresponse()
+    data = res.read()
+    return None
+
+'''def Forgotpassword(request):
     if request.method=='POST':
         form=Myprofile(request.POST)
         if form.is_valid():
@@ -176,7 +185,7 @@ def myprofile_edit(request):
         form=Myprofile()
 
     context={'form': form}
-    return render(request,'authentication/myprofile_edit.html',context)
+    return render(request,'authentication/myprofile_edit.html',context)'''
 
 def myprofile(request):
     user=request.user

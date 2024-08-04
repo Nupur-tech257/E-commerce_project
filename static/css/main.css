@@ -11,8 +11,8 @@ h1,h2,h3,h4,h5,h6{
 	background-color: #fff;
 	border-radius: 4px;
 	padding: 10px;
-	width:60%;
-	height:100%;
+	width:90%;
+	height:40%;
 }
 .row{
 	display: flex;
@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .row-view{
-	display: flex;
+	display:;
 	justify-content: flex-start;
 	flex-direction: row;
 	align-items: center;
@@ -130,15 +130,18 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
-
+#italic{
+	font-family: italic;
+	color:white;
+}
 .greeting{
 	color:white;
-	background-image:url("../images/main.jpg");
+	background-color:#124E66;
 	background-size: contain;
 	height:500px;
-	width:1200px;
-	margin:0 20px 10px 0px;
-	text-align: left;
+	width:1100px;
+	margin:20px 20px 10px 0px;
+	text-align: center;
 	text-shadow: 2px 2px rgb(179, 168, 176);
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -150,4 +153,30 @@ h1,h2,h3,h4,h5,h6{
 	background-color: aqua;
 	display: block;
 
+}
+
+.view{
+	margin-top: 10px;
+	margin-left: 20px;
+    height:500px;
+    width:900px;
+    background-color:#D3D9D4;
+    display: flex;
+    justify-content:center;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    padding:10px;
+}
+
+.view-container{
+	height:100%;
+    width:60%;
+    background-color: white;
+    text-align: left;
+    margin-right: 10px;
+	margin-left: 0px;
+	padding:20px;
+	border-radius: 20px;
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
 }

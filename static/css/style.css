@@ -1,16 +1,23 @@
 body{
     font-family: Verdana,Tahoma, sans-serif;
     margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 form{
-    margin: 2rem 9rem 3rem 38rem;
+    margin: 2rem;
     width:30%;
     max-width: 20rem;
     padding:4rem;
-    border-radius: 12px;
+    padding-top:.5rem;
+    padding-bottom: 2rem;
+    border-radius: 20px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    justify-content: center;
     display: flex;
     flex-direction:column ;
 }
