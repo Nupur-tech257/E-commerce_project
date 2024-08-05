@@ -29,7 +29,12 @@
 			   <hr>
 			   <button data-product={{i.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
 			   <a style="text-decoration:none " class="btn btn-outline-success" href="{%url 'views' i.id%}">View</a>
-			   <h4 style="display: inline-block; float: center"><strong>Rs.{{i.price}}</strong></h4>
+               {%if i.discount is None%}
+			   <h4 style="display: inline-block; float: center; color:black"><strong>Rs.{{i.price}}</strong></h4>
+			   {%else%}
+			   <h6 style="display: inline-block; float: center; text-decoration:line-through; color:grey"><strong>Rs.{{i.price}}</strong></h6>
+			   <h4 style="display: inline-block; float: center; color:black"><strong>Rs.{{i.price_after_discount}}</strong></h4>
+			   {%endif%}
 			</div>
 		</div>
 		{%endfor%}

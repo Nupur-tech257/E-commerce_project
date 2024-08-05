@@ -22,10 +22,8 @@
 <div class="view">
 	<div class="view-container2" style="width:400px">
 		<div class="box-element" id="form-wrapper">
-            <hr>
             <div><img class="thumbnail" src="{{i.imageURL}}"></div>
             <hr>
-            <h4>Rs{{i.price}}</h4>
             <div class="cart-row">
                   <div style="flex:2"><button data-product={{i.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></div>
                   <div style='flex:2'><button data-product={{i.id}} data-action="delete" class="btn btn-outline-secondary add-btn update-cart">Delete</button></div>
@@ -44,9 +42,17 @@
                 <hr>
                 <h3>{{i.name}}</h3>
                 <hr>
+                {%if i.price_after_discount is not none%}
+                <h5 style="color:green" >special price {{i.discount}}% off</h5>
+                <h5 style="text-decoration:line-through; color:rgb(0,0,255,1)">Rs.{{i.price}}</h5>
+                <h2 style="color:black"><b>Rs.{{i.price_after_discount}}</b></h2>
+                {%else%}
+                <h2>Rs.{{i.price}}</h2>
+                {%endif%}
+                <hr>
                 <h5>Product details</h5>
                 <hr>
-                {{i.product_details}}
+                <pre>{{i.product_details}}</pre>
 	</div>
 </div>
 {%endfor%}

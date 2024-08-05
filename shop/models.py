@@ -29,9 +29,16 @@ class Product(models.Model):
     product_details=models.TextField(blank=True)
     image=models.ImageField(null=True,blank=True)
     category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=True,null=True)
+    discount=models.IntegerField(blank=True,null=True)
 
     def __str__(self):
         return f'{self.name}'
+    
+    @property
+    def price_after_discount(self):
+        if self.discount is not None:
+            price1=self.price-(self.price*(self.discount/100))
+        return price1
     
     @property
     def imageURL(self):
@@ -73,7 +80,11 @@ class OrderItem(models.Model):
 
     @property
     def get_total(self):
-        total=self.product.price*self.quantity
+        if self.product.discount is None:
+            total=self.product.price*self.quantity
+        else:
+            price=self.product.price-(self.product.price*(self.product.discount/100))
+            total=price*self.quantity
         return total
 
     def __str__(self) -> str:
