@@ -38,7 +38,7 @@ class Product(models.Model):
     def price_after_discount(self):
         if self.discount is not None:
             price1=self.price-(self.price*(self.discount/100))
-        return price1
+        return round(price1,2)
     
     @property
     def imageURL(self):
@@ -66,7 +66,7 @@ class Order(models.Model):
         OrderItems=self.orderitem_set.all()
         print(OrderItems)
         total=sum([ i.get_total for i in OrderItems])
-        return total
+        return round(total,2)
 
 
     def __str__(self) -> str:
@@ -85,7 +85,7 @@ class OrderItem(models.Model):
         else:
             price=self.product.price-(self.product.price*(self.product.discount/100))
             total=price*self.quantity
-        return total
+        return round(total,2)
 
     def __str__(self) -> str:
         return f'{self.id}.{self.order}'
