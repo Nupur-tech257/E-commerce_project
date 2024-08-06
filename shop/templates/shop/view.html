@@ -2,27 +2,10 @@
 {% load static %}
 {% block content %}
 {%for i in product%}
-<!--<div class="container">
-      <div class="container2">
-          <img class="view-img" src="{{i.imageURL}}">
-          <hr>
-          <h4>Rs{{i.price}}</h4>
-          <div class="cart-row">
-                <div style="flex:2"><button data-product={{i.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></div>
-                <div style='flex:2'><button data-product={{i.id}} data-action="delete" class="btn btn-outline-secondary add-btn update-cart">Delete</button></div>
-                <div class="quantity">
-                      <img data-product="{{i.id}}"  data-action="add" class="chg-quantity update-cart" src="{% static  'images/3+arrow-up.png' %}">
-          
-                      <img data-product="{{i.id}}"  data-action="remove" class="chg-quantity update-cart" src="{% static  'images/2+arrow-down.png' %}">
-                </div>
-          </div>
-      </div>
-      <div class="container2">box1</div>
-  </div>-->
 <div class="view">
-	<div class="view-container2" style="width:400px">
-		<div class="box-element" id="form-wrapper">
-            <div><img class="thumbnail" src="{{i.imageURL}}"></div>
+	<div class="view-container2" style="width:370px;">
+		<div  class="box-element" id="form-wrapper">
+            <div class="view-img1"><img class="thumbnail" src="{{i.imageURL}}"></div>
             <hr>
             <div class="cart-row">
                   <div style="flex:2"><button data-product={{i.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></div>

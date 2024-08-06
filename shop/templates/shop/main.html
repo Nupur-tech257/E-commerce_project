@@ -51,7 +51,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav  class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand" href="#">Ecommerce</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{%url 'signup'%}">Signup</a>
-                <a class="dropdown-item" href="{%url 'signin'%}">Singin</a>
+                <a class="dropdown-item" href="{%url 'signin'%}">Signin</a>
                 <div class="dropdown-divider"></div>
                 <a id="signout" class="dropdown-item" href="{%url 'signout'%}">SignOut</a>
                 <a id="changepassword" class="dropdown-item" href="{%url 'changepassword'%}">Change password</a>
@@ -99,20 +99,23 @@
           <p id="cart-total">{{order_items}}</p>
         </div>
       </nav>
-  
-         <div class="container">
-              <br>
-            {% block content %}
-            <div class="greeting">
-              <h1 class="greeting"><pre style="color:white">
-<b>Welcome!</b>
-   <i><h3 style="color:white">"Shop your World with us"</h3></i>
-              </pre>
-              </h1>
-            </div>
-            {% endblock content %}
-         </div>
+          {% block content %}
+          <div class="greeting">
+            <div><h1 class="welcome"><strong>welcome</strong></h1></div>
+            <div class="welcome" id="quote">"Shop your world with us"</div>
+          </div>
+          <div class="container">
+                 <div class="card">
+                     <div class="img"><img class="thumbnail" src="shoes.jpg"></div>
+                     <div class="info">
+                        <h4><strong>shoes</strong></h4>
+                <hr>
+                     </div>
+                 </div>
+                 <div class="card"></div>
+          </div>
 
+          {% endblock content %}
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 

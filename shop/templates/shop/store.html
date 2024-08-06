@@ -4,22 +4,10 @@
 {%if user.is_authenticated%}
 {{message}}
 {%endif%}
+  <div class="container">
+	<br>
     <h4>Welcome {{fname}}!</h4>
-	<!---<div class="row">
-		{%for i in product%}
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{{i.imageURL}}">
-			<div class="box-element product">
-				<h6><strong>{{i.name}}</strong></h6>
-				<hr>
-				<button data-product={{i.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				<a class="btn btn-outline-success" href="{%url 'views' i.id%}">View</a>
-				<h4 style="display: inline-block; float: center"><strong>Rs.{{i.price}}</strong></h4>
-
-			</div>
-		</div>
-		{%endfor%}
-	</div>-->
+	<br>
 	<div class="store-container">
 		{%for i in product%}
 		<div class="card">
@@ -39,5 +27,6 @@
 		</div>
 		{%endfor%}
    </div>
+  </div>
 
 {% endblock content %}

@@ -70,3 +70,11 @@ hr{
     color: #28a745;
     border-color: #28a745;
 }
+
+.homepage{
+	height: 400px;
+	width:100px;
+	background-color:red;
+	display: flex;
+	justify-content: center;
+}

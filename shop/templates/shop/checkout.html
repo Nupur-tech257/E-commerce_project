@@ -1,7 +1,9 @@
 {% extends 'shop/main.html' %}
 {% load static %}
 {% block content %}
-<div class="row">
+<div class="container">
+<br>
+<div style="background-color:transparent; height:550px" class="row">
 	<div class="col-lg-6">
 		<div class="box-element" id="form-wrapper">
             <form id="form">
@@ -66,6 +68,7 @@
                 <h5>Total: {{order_total}}</h5>
             </div>
 	</div>
+</div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD&disable-funding=credit"></script>
 <script>
