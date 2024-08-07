@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 {%for i in product%}
+<div class="container">
 <div class="view">
 	<div class="view-container2" style="width:370px;">
 		<div  class="box-element" id="form-wrapper">
@@ -37,6 +38,7 @@
                 <hr>
                 <pre>{{i.product_details}}</pre>
 	</div>
+</div>
 </div>
 {%endfor%}
 {%endblock%}
