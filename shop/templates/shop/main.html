@@ -51,59 +51,18 @@
 
 </head>
 <body>
-    {% comment %} <nav  class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand" href="#">Ecommerce</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'store' %}">Store<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{%url 'signup'%}">Signup</a>
-                <a class="dropdown-item" href="{%url 'signin'%}">Signin</a>
-                <div class="dropdown-divider"></div>
-                <a id="signout" class="dropdown-item" href="{%url 'signout'%}">SignOut</a>
-                <a id="changepassword" class="dropdown-item" href="{%url 'changepassword'%}">Change password</a>
-                <a id="myprofile" class="dropdown-item" href="{%url 'myprofile'%}">MyProfile</a>
-                <a id='myorders' class="dropdown-item" href="{%url 'myorders'%}">MyOrders</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Category
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {%for i in category%}
-                <a class="dropdown-item" href="{%url 'category' i.name%}">{{i.name}}</a>
-                {%endfor%}
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0" action='/search/' method='POST'>
-            {%csrf_token%}
-            <input class="form-control mr-sm-2" type="search" name='search' placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-        <div class="form-inline my-2 my-lg-0">
-            <a href="{% url 'cart' %}">
-                <img  id="cart-icon" src="{% static 'images/cart.png' %}"></a>
-          <p id="cart-total">{{order_items}}</p>
-        </div>
-      </nav> {% endcomment %}
       {%block navbar%}
       {%endblock%}
       {%block content%}
           <div class="greeting">
-            <div class=greeting2>box</div>
+            <div class="greeting2"><pre><h1><strong>Welcome!<strong></h1>
+            <h3>Shop your world with us</h3></pre>
+            <br>
+            <div style="flex:2"><a href="{%url 'store'%}"><button class="btn btn-outline-secondary add-btn">Go to Store</button></a></div>
+            <br>
+            <div style="flex:2; display:inline;"><a href="{%url 'signup'%}"><button class="btn btn-outline-secondary add-btn">Signup</button></a></div>
+            <div style="flex:2; display:inline;"><a href="{%url 'signin'%}"><button class="btn btn-outline-secondary add-btn">Signin</button></a></div>
+          </div>
           </div>
       {%endblock%}
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

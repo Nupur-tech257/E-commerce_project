@@ -134,21 +134,25 @@ h1,h2,h3,h4,h5,h6{
 	color:white;
 }
 .greeting{
-	color:white;
 	background-image:url("../images/main.jpg");
 	background-size: cover;
-	height:500px;
+	height:650px;
 	width:100%;
 	margin:10px 20px 10px 0px;
 	text-align: center;
 	text-shadow: 2px 2px rgb(179, 168, 176);
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	display:flex;
 }
-/* .greeting2{
-	width: 300px;
-	height:600px;
-	background-color: white;
-} */
+.greeting2{
+	width: 400px;
+	height:400px;
+	background-color:transparent;
+	padding:20px;
+	margin-left: 144px;
+	margin-top: 40px;
+	display: block;
+}
 .container{
 	padding: 9px;
 	margin: 0 auto;
