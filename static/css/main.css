@@ -133,23 +133,36 @@ h1,h2,h3,h4,h5,h6{
 	font-family: italic;
 	color:white;
 }
-.greeting{
-	background-image:url("../images/main.jpg");
-	background-size: cover;
-	height:650px;
+.home{
+	background-color:#4f868c;
 	width:100%;
-	margin:10px 20px 10px 0px;
+	height:700px;
+    display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
+.greeting{
+	background-image:url("../images/landscape3.jpg");
+	background-size: cover;
+	height:400px;
+	width:70%;
+	/*margin:2px 20px 10px 0px;*/
 	text-align: center;
 	text-shadow: 2px 2px rgb(179, 168, 176);
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	display:flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	border-radius: 20px;
 }
 .greeting2{
 	width: 400px;
 	height:400px;
 	background-color:transparent;
 	padding:20px;
-	margin-left: 144px;
+	margin-left: 1px;
 	margin-top: 40px;
 	display: block;
 }

@@ -180,7 +180,9 @@ def myprofile_edit(request):
 
 def myprofile(request):
     user=request.user
+    print(user)
     profile=Profile.objects.get(user=user)
+    print(profile)
     if request.method=='GET':
         f_name=user.first_name
         l_name=user.last_name
